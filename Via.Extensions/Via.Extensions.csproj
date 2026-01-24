@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!--
+      Dev workflow:
+      - default: reference the local Via project (fast inner loop)
+      - pack/validation: set ViaUseProjectReference=false and provide ViaPackageVersion
+
+      Example:
+        dotnet build -p:ViaUseProjectReference=true
+        dotnet build -p:ViaUseProjectReference=false -p:ViaPackageVersion=0.1.0
+    -->
+  </PropertyGroup>
+
+  <Target Name="EnsureViaPackageVersion" BeforeTargets="Restore"
+          Condition="'$(ViaUseProjectReference)' != 'true' and '$(ViaPackageVersion)' == ''">
+    <Error Text="ViaUseProjectReference is false; set -p:ViaPackageVersion=... to restore the Via package." />
+  </Target>
+
+  <ItemGroup Condition="'$(ViaUseProjectReference)' == 'true'">
+    <ProjectReference Include="../Via/Via.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(ViaUseProjectReference)' != 'true'">
+    <PackageReference Include="Via" Version="$(ViaPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ResultAsyncExtensions.cs" />
+    <Compile Remove="ResultLinqExtensions.cs" />
+    <Compile Remove="OptionLinqExtensions.cs" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Via/Via.csproj" />
+  <Project Path="Via.Extensions/Via.Extensions.csproj" />
+</Solution>

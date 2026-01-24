@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <PackageId>Via</PackageId>
+    <Version Condition="'$(Version)' == ''">$(ViaVersion)</Version>
+    <Authors>nixoninnes</Authors>
+    <Description>Core functional helper types (Error, Option, Result) for Via.</Description>
+    <PackageReadmeFile></PackageReadmeFile>
+    <RepositoryUrl></RepositoryUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+    <!-- Local feed output (repo-root/.nupkg) for quick iterative pack+restore -->
+    <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">../.nupkg</PackageOutputPath>
+  </PropertyGroup>
+
+</Project>
