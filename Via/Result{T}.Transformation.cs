@@ -5,12 +5,12 @@ public static class ResultTTransformation
     extension<T>(Result<T> result)
     {
         /// <summary>Transforms the success value while preserving failure.</summary>
-        public Result<TOut> Map<TOut>(Func<T?, TOut> map)
+        public Result<TOut> Map<TOut>(Func<T, TOut> map)
         {
             ArgumentNullException.ThrowIfNull(map);
 
             return result.IsSuccess
-                ? Result<TOut>.Success(map(result.Value))
+                ? Result<TOut>.Success(map(result.Value!))
                 : Result<TOut>.Failure(result.Error.GetValueOrDefault());
         }
 

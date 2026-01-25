@@ -7,11 +7,23 @@ public static class ResultTInspection
     extension<T>(Result<T> result)
     {
         /// <summary>Gets the value if the result is successful.</summary>
-        public bool TryGetValue(out T? value)
+        public bool TryGetValue([NotNullWhen(true)] out T? value)
         {
             if (result.IsSuccess)
             {
-                value = result.Value;
+                value = result.Value!;
+                return true;
+            }
+
+            value = default;
+            return false;
+        }
+
+        public bool IsSuccessGetValue([NotNullWhen(true)] out T? value)
+        {
+            if (result.IsSuccess)
+            {
+                value = result.Value!;
                 return true;
             }
 
