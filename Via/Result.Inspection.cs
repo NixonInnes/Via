@@ -11,7 +11,7 @@ public static class ResultInspection
         {
             if (result.IsFailure)
             {
-                error = result.Error.GetValueOrDefault();
+                error = result.Error.OrUnknown();
                 return true;
             }
 

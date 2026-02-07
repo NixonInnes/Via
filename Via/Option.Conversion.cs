@@ -9,7 +9,7 @@ public static class OptionConversion
         {
             return option.IsSome
                 ? Result<T>.Success(option.Value)
-                : Result<T>.Failure(error ?? new Error("Option has no value."));
+                : Result<T>.Failure(error ?? new ViaError("Option has no value."));
         }
     }
 }

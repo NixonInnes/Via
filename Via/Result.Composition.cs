@@ -19,6 +19,6 @@ public static class ResultComposition
         public Result Unwrap()
             => result.IsSuccess
                 ? result.Value
-                : Result.Failure(result.Error.GetValueOrDefault());
+                : Result.Failure(result.Error.OrUnknown());
     }
 }

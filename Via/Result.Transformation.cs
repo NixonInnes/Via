@@ -11,7 +11,7 @@ public static class ResultTransformation
 
             return result.IsSuccess
                 ? Result.Success()
-                : Result.Failure(mapError(result.Error.GetValueOrDefault()));
+                : Result.Failure(mapError(result.Error.OrUnknown()));
         }
     }
 }

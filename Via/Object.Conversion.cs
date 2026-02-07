@@ -17,7 +17,7 @@ public static class ObjectConversion
 
             return predicate(obj)
                 ? Result<T>.Success(obj)
-                : Result<T>.Failure(error ?? new Error("Predicate not satisfied."));
+                : Result<T>.Failure(error ?? new ViaError("Predicate not satisfied."));
         }
     }
 
@@ -30,7 +30,7 @@ public static class ObjectConversion
             {
                 return nullAsSuccess
                     ? Result<T>.Success(obj!)
-                    : Result<T>.Failure(error ?? new Error("Value is null."));
+                    : Result<T>.Failure(error ?? new ViaError("Value is null."));
             }
 
             return Result<T>.Success(obj);

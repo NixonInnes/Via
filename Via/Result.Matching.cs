@@ -12,7 +12,7 @@ public static class ResultMatching
 
             return result.IsSuccess
                 ? onSuccess()
-                : onFailure(result.Error.GetValueOrDefault());
+                : onFailure(result.Error.OrUnknown());
         }
 
         /// <summary>Executes the matching callback for success or failure.</summary>
@@ -27,7 +27,7 @@ public static class ResultMatching
                 return;
             }
 
-            onFailure(result.Error.GetValueOrDefault());
+            onFailure(result.Error.OrUnknown());
         }
     }
 }

@@ -39,6 +39,6 @@ public static class DecisionExtensions
         public Result ToResult()
             => decision.IsAllowed
                 ? Result.Success()
-                : Result.Failure(new Error(decision.Reason ?? "No reason provided."));
+                : Result.Failure(Error.FromMessage(decision.Reason ?? "No reason provided."));
     }
 }

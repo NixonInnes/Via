@@ -36,7 +36,7 @@ public static class ResultTInspection
         {
             if (result.IsFailure)
             {
-                error = result.Error.GetValueOrDefault();
+                error = result.Error.OrUnknown();
                 return true;
             }
 

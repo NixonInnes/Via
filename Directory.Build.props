@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <!-- Single source of truth for package versioning during development -->
-    <ViaVersion>0.4.4</ViaVersion>
+    <ViaVersion>0.5.0</ViaVersion>
 
     <!-- Default: use local project reference for fast inner-loop development -->
     <ViaUseProjectReference Condition="'$(ViaUseProjectReference)' == ''">true</ViaUseProjectReference>

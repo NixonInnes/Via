@@ -3,11 +3,11 @@
 public readonly struct Result
 {
     public bool IsSuccess { get; }
-    private readonly Error _error;
+    private readonly Error? _error;
 
     public Error? Error => IsFailure ? _error : null;
 
-    private Result(bool isSuccess, Error error)
+    private Result(bool isSuccess, Error? error)
     {
         IsSuccess = isSuccess;
         _error = error;
@@ -16,7 +16,7 @@ public readonly struct Result
     public bool IsFailure => !IsSuccess;
 
     public static Result Success()
-        => new(true, default);
+        => new(true, null);
 
     public static Result Failure(Error error)
         => new(false, error);

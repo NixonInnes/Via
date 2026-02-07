@@ -11,7 +11,7 @@ public static class ResultTComposition
 
             return result.IsSuccess
                 ? bind(result.Value)
-                : Result<TOut>.Failure(result.Error.GetValueOrDefault());
+                : Result<TOut>.Failure(result.Error.OrUnknown());
         }
 
         /// <summary>Chains a computation that returns a non-generic result when successful.</summary>
@@ -21,7 +21,7 @@ public static class ResultTComposition
 
             return result.IsSuccess
                 ? bind(result.Value)
-                : Result.Failure(result.Error.GetValueOrDefault());
+                : Result.Failure(result.Error.OrUnknown());
         }
     }
 
@@ -31,6 +31,6 @@ public static class ResultTComposition
         public Result<T> Unwrap()
             => result.IsSuccess
                 ? result.Value
-                : Result<T>.Failure(result.Error.GetValueOrDefault());
+                : Result<T>.Failure(result.Error.OrUnknown());
     }
 }
