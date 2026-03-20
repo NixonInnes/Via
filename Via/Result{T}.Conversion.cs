@@ -15,7 +15,7 @@ public static class ResultTConversion
             else
             {
                 value = default;
-                return Result.Failure(result.Error.GetValueOrDefault());
+                return Result.Failure(result.Error.OrUnknown());
             }
         }
     }

@@ -11,7 +11,7 @@ public static class ResultTTransformationAsync
 
             if (result.IsFailure)
             {
-                return Task.FromResult(Result<TOut>.Failure(result.Error.GetValueOrDefault()));
+                return Task.FromResult(Result<TOut>.Failure(result.Error.OrUnknown()));
             }
 
             return MapAsyncSuccess(map, result.Value);

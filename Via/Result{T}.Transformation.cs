@@ -11,7 +11,7 @@ public static class ResultTTransformation
 
             return result.IsSuccess
                 ? Result<TOut>.Success(map(result.Value!))
-                : Result<TOut>.Failure(result.Error.GetValueOrDefault());
+                : Result<TOut>.Failure(result.Error.OrUnknown());
         }
 
         /// <summary>Transforms the error value when the result is a failure.</summary>
@@ -19,7 +19,7 @@ public static class ResultTTransformation
         {
             ArgumentNullException.ThrowIfNull(mapError);
 
-            return result.IsSuccess ? result : Result<T>.Failure(mapError(result.Error.GetValueOrDefault()));
+            return result.IsSuccess ? result : Result<T>.Failure(mapError(result.Error.OrUnknown()));
         }
     }
 }

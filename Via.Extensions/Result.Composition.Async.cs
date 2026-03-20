@@ -11,7 +11,7 @@ public static class ResultCompositionAsync
 
             if (result.IsFailure)
             {
-                return Task.FromResult(Result.Failure(result.Error.GetValueOrDefault()));
+                return Task.FromResult(Result.Failure(result.Error.OrUnknown()));
             }
 
             return bind();

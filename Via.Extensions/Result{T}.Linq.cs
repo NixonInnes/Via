@@ -11,7 +11,7 @@ public static class ResultTLinq
 
             return result.IsSuccess
                 ? Result<TOut>.Success(selector(result.Value))
-                : Result<TOut>.Failure(result.Error.GetValueOrDefault());
+                : Result<TOut>.Failure(result.Error.OrUnknown());
         }
 
         /// <summary>LINQ SelectMany for Result (binds and projects).</summary>
@@ -24,13 +24,13 @@ public static class ResultTLinq
 
             if (result.IsFailure)
             {
-                return Result<TOut>.Failure(result.Error.GetValueOrDefault());
+                return Result<TOut>.Failure(result.Error.OrUnknown());
             }
 
             var middle = bind(result.Value);
             if (middle.IsFailure)
             {
-                return Result<TOut>.Failure(middle.Error.GetValueOrDefault());
+                return Result<TOut>.Failure(middle.Error.OrUnknown());
             }
 
             return Result<TOut>.Success(project(result.Value, middle.Value));

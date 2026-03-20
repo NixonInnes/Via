@@ -24,7 +24,7 @@ public static class ResultTSideEffects
 
             if (result.IsFailure)
             {
-                action(result.Error.GetValueOrDefault());
+                action(result.Error.OrUnknown());
             }
 
             return result;

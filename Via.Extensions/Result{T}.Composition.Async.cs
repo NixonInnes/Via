@@ -11,7 +11,7 @@ public static class ResultTCompositionAsync
 
             if (result.IsFailure)
             {
-                return Task.FromResult(Result<TOut>.Failure(result.Error.GetValueOrDefault()));
+                return Task.FromResult(Result<TOut>.Failure(result.Error.OrUnknown()));
             }
 
             return bind(result.Value);
@@ -24,7 +24,7 @@ public static class ResultTCompositionAsync
 
             if (result.IsFailure)
             {
-                return Task.FromResult(Result.Failure(result.Error.GetValueOrDefault()));
+                return Task.FromResult(Result.Failure(result.Error.OrUnknown()));
             }
 
             return bind(result.Value);
